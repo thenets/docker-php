@@ -12,7 +12,7 @@ docker-build:
 	docker build -t $(NAME):$(TAG) --rm .
 
 shell:
-	docker run -it --rm -p 8888:80 $(NAME):$(TAG) $(SHELL)
+	docker run -it --rm -p 8888:80 --entrypoint="" $(NAME):$(TAG) $(SHELL)
 
 build-shell: build shell
 
@@ -20,3 +20,6 @@ build-test: build test
 
 test:
 	docker run -it --rm --name debug -p 8888:80 $(NAME):$(TAG)
+
+unit-test:
+	echo "not implemented yet"
