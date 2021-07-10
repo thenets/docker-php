@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.7
 
 MAINTAINER Luiz Felipe F M Costa <luiz@thenets.org>
 
@@ -17,13 +17,6 @@ RUN set -x && \
     # Install Apache HTTP Server
     apk add --no-cache apache2 apache2-utils php7-apache2
 
-RUN apk update && \
-    set -x && \
-    # Set-up rc-service
-    mkdir -p /run/openrc && \
-    bash-4.4# touch /run/openrc/softlevel && \
-    && apk add coreutils rc-service
-
 # Add user with dir at /app
 RUN set -x \
     # Add 'php' user
@@ -36,4 +29,4 @@ ADD ./entrypoint.sh /entrypoint.sh
 ADD ./httpd.conf $APP_DIR/
 ENTRYPOINT /entrypoint.sh
 EXPOSE 80 443
-VOLUME [$APP_DIR]
+#VOLUME [$APP_DIR]
